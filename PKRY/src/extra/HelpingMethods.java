@@ -5,7 +5,6 @@ import java.util.Random;
 
 public class HelpingMethods {
 	
-	//dupa dupa tralala
 	/**
 	 * This method generate a probably prime big number.
 	 * @param bit_length
