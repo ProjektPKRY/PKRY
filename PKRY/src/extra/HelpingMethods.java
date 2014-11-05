@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class HelpingMethods {
 	
+	// komentarz
 	/**
 	 * This method generate a probably prime big number.
 	 * @param bit_length
