@@ -15,17 +15,36 @@ public class ServerThread extends Thread {
         try (
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(
-                new InputStreamReader(
-                    socket.getInputStream()));
+                new InputStreamReader(socket.getInputStream()));
         ) {
             String outputLine;
             outputLine = "CONNECTED";
             out.println(outputLine);
-            System.out.println(socket.getInetAddress() + " - " + in.readLine());
+            
+            String inputLine;
+            while (true) {
+            	inputLine = in.readLine();
+            	if (inputLine == "" || inputLine == null) {
+            		break;
+            	}
+            	
+            	else if (inputLine.equals("samochod")) {
+            		out.println("Porsche 911");
+            	}
+            	else if (inputLine.equals("close")) {
+            		System.out.println("Próbowa³ zakoñczyæ");
+            		out.println("Dupa, nie wyjdziesz");
+            		socket.close();
+            	}
+            	else {
+            		System.out.println(socket.getInetAddress() + ": " + inputLine);
+            	}
+            }
  
             socket.close();
         } catch (IOException e) {
-            e.printStackTrace();
+         //   e.printStackTrace();
+        	System.out.println("Zerwano po³¹czenie");
         }
     }
 }
